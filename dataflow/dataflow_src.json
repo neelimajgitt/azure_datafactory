@@ -12,8 +12,20 @@
 					"name": "customerssrc"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "customers_derived_tgt",
+						"type": "DatasetReference"
+					},
+					"name": "tgt"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedfullname"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          customer_id as integer,",
@@ -29,7 +41,12 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: true,",
 				"     inferDriftedColumnTypes: true,",
-				"     ignoreNoFilesFound: false) ~> customerssrc"
+				"     ignoreNoFilesFound: false) ~> customerssrc",
+				"customerssrc derive(fullname = concat(first_name,' ' ,last_name)) ~> derivedfullname",
+				"derivedfullname sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> tgt"
 			]
 		}
 	}
