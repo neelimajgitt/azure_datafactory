@@ -1,0 +1,15 @@
+{
+	"name": "DE-coding-macaw",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b54df837-af93-4968-8e84-37af3da061b9",
+		"tenantId": "50a397de-789a-42db-b94c-4936f2a891f2"
+	}
+}
