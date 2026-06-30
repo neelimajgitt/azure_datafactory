@@ -1,5 +1,5 @@
 {
-	"name": "pipeline_2",
+	"name": "pipeline_conversion",
 	"properties": {
 		"activities": [
 			{
@@ -15,6 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow_src",
+						"type": "DataFlowReference"
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
