@@ -1,0 +1,100 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "synapse_customer_target",
+						"type": "DatasetReference"
+					},
+					"name": "customersynapse"
+				},
+				{
+					"dataset": {
+						"referenceName": "orders_source",
+						"type": "DatasetReference"
+					},
+					"name": "ordersblob"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable2",
+						"type": "DatasetReference"
+					},
+					"name": "finaltable"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "ordersblobcast"
+				},
+				{
+					"name": "aggorders"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          customer_id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          phone as string,",
+				"          city as string,",
+				"          state as string,",
+				"          country as string,",
+				"          created_at as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> customersynapse",
+				"source(output(",
+				"          order_id as string,",
+				"          customer_id as string,",
+				"          product_id as string,",
+				"          quantity as string,",
+				"          order_date as string,",
+				"          status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ordersblob",
+				"customersynapse, ordersblobcast join(customersynapse@customer_id == ordersblobcast@customer_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"ordersblob cast(output(",
+				"          order_id as integer,",
+				"          customer_id as integer,",
+				"          product_id as integer,",
+				"          quantity as integer,",
+				"          status as string",
+				"     ),",
+				"     errors: true) ~> ordersblobcast",
+				"join1 aggregate(groupBy(customersynapse@customer_id),",
+				"     num_order_ids = count(order_id)) ~> aggorders",
+				"aggorders sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> finaltable"
+			]
+		}
+	}
+}
