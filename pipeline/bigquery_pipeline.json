@@ -22,7 +22,14 @@
 						"type": "SqlDWSink",
 						"allowCopyCommand": true
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "adf"
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
