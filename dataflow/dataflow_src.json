@@ -48,7 +48,10 @@
 				"     partitionFileNames:['customers_derived_tgt.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> tgt"
+				"     partitionBy('key',",
+				"          0,",
+				"          ERROR_FUNCTION('')",
+				"     )) ~> tgt"
 			]
 		}
 	}
