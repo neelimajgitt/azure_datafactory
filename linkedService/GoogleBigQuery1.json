@@ -1,0 +1,14 @@
+{
+	"name": "GoogleBigQuery1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "GoogleBigQueryV2",
+		"version": "1.1",
+		"typeProperties": {
+			"projectId": "project-bdbe65e7-fcd2-4ade-abb",
+			"authenticationType": "ServiceAuthentication",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDZERTBBOEY1LTQzMjctNENBQy04RkE0LTkzNEE2NjY0OUIzN18wMTQ1YjQzNC1lZjhiLTQ5MjktODNmNC04MTAwNzE1NGY3MWUiDQp9"
+		}
+	}
+}
