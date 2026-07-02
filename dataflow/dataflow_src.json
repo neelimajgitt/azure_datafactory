@@ -45,7 +45,6 @@
 				"customerssrc derive(fullname = concat(first_name,' ' ,last_name)) ~> derivedfullname",
 				"derivedfullname sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['customers_derived_tgt.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('key',",
