@@ -1226,7 +1226,7 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/delta/blobs/source/customers .csv",
+					"blobPathBeginsWith": "/delta/blobs/source/customers1.csv",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('trigger01_properties_typeProperties_scope')]",
 					"events": [
