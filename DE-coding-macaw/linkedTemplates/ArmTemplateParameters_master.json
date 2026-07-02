@@ -8,6 +8,24 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"AzureSynapseAnalytics1_password": {
+			"value": ""
+		},
+		"GoogleBigQuery1_keyFileContent": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_server": {
+			"value": "neelimaj.sql.azuresynapse.net"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_database": {
+			"value": "retail"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_userName": {
+			"value": "sqladminuser"
+		},
+		"trigger01_properties_typeProperties_scope": {
+			"value": "/subscriptions/8b5e6c99-c82e-4b26-bf5d-c0cbaa2a4af3/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/neelima8630"
+		},
 		"containerUri": {
 			"value": ""
 		},

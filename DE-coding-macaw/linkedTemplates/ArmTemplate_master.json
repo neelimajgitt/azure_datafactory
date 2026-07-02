@@ -11,6 +11,30 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"AzureSynapseAnalytics1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSynapseAnalytics1'"
+		},
+		"GoogleBigQuery1_keyFileContent": {
+			"type": "secureString",
+			"metadata": "Secure string for 'keyFileContent' of 'GoogleBigQuery1'"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "neelimaj.sql.azuresynapse.net"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "retail"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladminuser"
+		},
+		"trigger01_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/8b5e6c99-c82e-4b26-bf5d-c0cbaa2a4af3/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/neelima8630"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -40,6 +64,24 @@
 					},
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureSynapseAnalytics1_password": {
+						"value": "[parameters('AzureSynapseAnalytics1_password')]"
+					},
+					"GoogleBigQuery1_keyFileContent": {
+						"value": "[parameters('GoogleBigQuery1_keyFileContent')]"
+					},
+					"AzureSynapseAnalytics1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSynapseAnalytics1_properties_typeProperties_server')]"
+					},
+					"AzureSynapseAnalytics1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSynapseAnalytics1_properties_typeProperties_database')]"
+					},
+					"AzureSynapseAnalytics1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSynapseAnalytics1_properties_typeProperties_userName')]"
+					},
+					"trigger01_properties_typeProperties_scope": {
+						"value": "[parameters('trigger01_properties_typeProperties_scope')]"
 					}
 				}
 			},
