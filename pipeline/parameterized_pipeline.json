@@ -43,8 +43,12 @@
 					},
 					"enableStaging": false,
 					"translator": {
-						"value": "@pipeline().parameters.runid",
-						"type": "Expression"
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
 				"inputs": [
