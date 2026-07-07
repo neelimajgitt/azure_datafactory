@@ -20,7 +20,10 @@
 						"additionalColumns": [
 							{
 								"name": "runid",
-								"value": "@pipeline().RunId"
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -119,6 +122,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"runid": {
+				"type": "string",
+				"defaultValue": "@pipeline().RunId"
+			}
+		},
 		"annotations": []
 	}
 }
