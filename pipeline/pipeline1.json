@@ -40,7 +40,13 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "src_multiple_files",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": {
+								"value": "@item().name",
+								"type": "Expression"
+							}
+						}
 					},
 					"fieldList": [
 						"childItems"
