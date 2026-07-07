@@ -39,7 +39,7 @@
 					},
 					"enableStaging": false,
 					"translator": {
-						"value": "@pipeline().RunId",
+						"value": "@pipeline().parameters.runid",
 						"type": "Expression"
 					}
 				},
