@@ -38,11 +38,6 @@
 					"sink": {
 						"type": "SqlDWSink",
 						"allowCopyCommand": true,
-						"copyCommandSettings": {
-							"additionalOptions": {
-								"runid": "@pipeline().RunId"
-							}
-						},
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
