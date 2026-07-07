@@ -37,7 +37,12 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"writeBehavior": "Upsert",
+						"allowCopyCommand": true,
+						"copyCommandSettings": {
+							"additionalOptions": {
+								"runid": "@pipeline().RunId"
+							}
+						},
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -48,61 +53,51 @@
 							{
 								"source": {
 									"name": "product_id",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "product_id",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "product_name",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "product_name",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "category",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "category",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "price",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "price",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "created_at",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "created_at",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								}
 							},
 							{
@@ -112,16 +107,10 @@
 								},
 								"sink": {
 									"name": "runid",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"type": "String"
 								}
 							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						]
 					}
 				},
 				"inputs": [
