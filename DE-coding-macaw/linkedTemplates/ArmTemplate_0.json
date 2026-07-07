@@ -241,6 +241,90 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalyticsTable4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "retail",
+					"table": "products_new"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalyticsTable5')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "retail",
+					"table": "product_data"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalyticsTable6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "retail",
+					"table": "product_dynamic"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalyticsTable7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "retail",
+					"table": "product_multilpe_files_tgt"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/bigquery_customers')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -454,7 +538,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/orders_source')]",
+			"name": "[concat(parameters('factoryName'), '/dynamic_products')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -467,61 +551,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "orders.csv",
-						"folderPath": "source",
-						"container": "delta"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "order_id",
-						"type": "String"
-					},
-					{
-						"name": "customer_id",
-						"type": "String"
-					},
-					{
-						"name": "product_id",
-						"type": "String"
-					},
-					{
-						"name": "quantity",
-						"type": "String"
-					},
-					{
-						"name": "order_date",
-						"type": "String"
-					},
-					{
-						"name": "status",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/product_src')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "products.csv",
+						"fileName": {
+							"value": "@concat('products_',formatDateTime(utcNow(),'yyyyMMdd'),'.csv')",
+							"type": "Expression"
+						},
 						"folderPath": "source",
 						"container": "delta"
 					},
@@ -558,561 +591,30 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/synapse_customer_target')]",
+			"name": "[concat(parameters('factoryName'), '/metadata')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
+					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "AzureSqlDWTable",
-				"schema": [
-					{
-						"name": "customer_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "first_name",
-						"type": "varchar"
-					},
-					{
-						"name": "last_name",
-						"type": "varchar"
-					},
-					{
-						"name": "email",
-						"type": "varchar"
-					},
-					{
-						"name": "phone",
-						"type": "varchar"
-					},
-					{
-						"name": "city",
-						"type": "varchar"
-					},
-					{
-						"name": "state",
-						"type": "varchar"
-					},
-					{
-						"name": "country",
-						"type": "varchar"
-					},
-					{
-						"name": "created_at",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
+				"type": "DelimitedText",
 				"typeProperties": {
-					"schema": "retail",
-					"table": "customer"
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "source",
+						"container": "delta"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\"",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/bigquery_pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "GoogleBigQueryV2Source"
-							},
-							"sink": {
-								"type": "SqlDWSink",
-								"allowCopyCommand": true,
-								"copyCommandSettings": {}
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								},
-								"path": "adf"
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "customer_id",
-											"type": "Int64"
-										},
-										"sink": {
-											"name": "customer_id",
-											"type": "Int32"
-										}
-									},
-									{
-										"source": {
-											"name": "first_name",
-											"type": "String"
-										},
-										"sink": {
-											"name": "first_name",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "last_name",
-											"type": "String"
-										},
-										"sink": {
-											"name": "last_name",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "email",
-											"type": "String"
-										},
-										"sink": {
-											"name": "email",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "phone",
-											"type": "String"
-										},
-										"sink": {
-											"name": "phone",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "city",
-											"type": "String"
-										},
-										"sink": {
-											"name": "city",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "state",
-											"type": "String"
-										},
-										"sink": {
-											"name": "state",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "country",
-											"type": "String"
-										},
-										"sink": {
-											"name": "country",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "created_at",
-											"type": "DateTimeOffset"
-										},
-										"sink": {
-											"name": "created_at",
-											"type": "DateTimeOffset"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "bigquery_customers",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSynapseAnalyticsTable1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/bigquery_customers')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSynapseAnalyticsTable1')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copy_data_pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "copy_data_file",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "customer_id",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "customer_id",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "first_name",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "first_name",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "last_name",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "last_name",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "email",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "email",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "phone",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "phone",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "city",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "city",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "state",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "state",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "country",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "country",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "created_at",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "created_at",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "customers_src",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "customers_tgt",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/customers_src')]",
-				"[concat(variables('factoryId'), '/datasets/customers_tgt')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parameterized_pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"additionalColumns": [
-									{
-										"name": "runid",
-										"value": {
-											"value": "@variables('runid')",
-											"type": "Expression"
-										}
-									}
-								],
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "SqlDWSink",
-								"allowCopyCommand": true,
-								"copyCommandSettings": {},
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": true,
-							"stagingSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								},
-								"path": "adf"
-							},
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "product_id",
-											"type": "String"
-										},
-										"sink": {
-											"name": "product_id",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "product_name",
-											"type": "String"
-										},
-										"sink": {
-											"name": "product_name",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "category",
-											"type": "String"
-										},
-										"sink": {
-											"name": "category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "price",
-											"type": "String"
-										},
-										"sink": {
-											"name": "price",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "created_at",
-											"type": "String"
-										},
-										"sink": {
-											"name": "created_at",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "runid",
-											"type": "String"
-										},
-										"sink": {
-											"name": "runid",
-											"type": "String"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "product_src",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "AzureSynapseAnalyticsTable3",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"variables": {
-					"runid": {
-						"type": "String",
-						"defaultValue": "@pipeline().RunId"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/product_src')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSynapseAnalyticsTable3')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		}

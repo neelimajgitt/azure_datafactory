@@ -47,6 +47,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/8b5e6c99-c82e-4b26-bf5d-c0cbaa2a4af3/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/neelima8630"
 		},
+		"trigger2_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/8b5e6c99-c82e-4b26-bf5d-c0cbaa2a4af3/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/neelima8630"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -121,6 +125,9 @@
 					},
 					"trigger01_properties_typeProperties_scope": {
 						"value": "[parameters('trigger01_properties_typeProperties_scope')]"
+					},
+					"trigger2_properties_typeProperties_scope": {
+						"value": "[parameters('trigger2_properties_typeProperties_scope')]"
 					}
 				}
 			},
