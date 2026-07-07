@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@concat('products_',formatDateTime(utcNow(),'yyyyMMdd'),'.csv')",
+					"value": "@concat('products_',formatDateTime(utcNow(),'yyyyMMdd'),'*','.csv')",
 					"type": "Expression"
 				},
 				"folderPath": "source",
@@ -22,6 +22,27 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "product_id",
+				"type": "String"
+			},
+			{
+				"name": "product_name",
+				"type": "String"
+			},
+			{
+				"name": "category",
+				"type": "String"
+			},
+			{
+				"name": "price",
+				"type": "String"
+			},
+			{
+				"name": "created_at",
+				"type": "String"
+			}
+		]
 	}
 }
