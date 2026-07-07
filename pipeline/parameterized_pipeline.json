@@ -28,12 +28,7 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true,
-						"copyCommandSettings": {
-							"additionalOptions": {
-								"runid": "@pipeline().RunId"
-							}
-						},
+						"writeBehavior": "Upsert",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -57,14 +52,10 @@
 				]
 			}
 		],
-		"parameters": {
+		"variables": {
 			"runid": {
-				"type": "string",
+				"type": "String",
 				"defaultValue": "@pipeline().RunId"
-			},
-			"param": {
-				"type": "Object",
-				"defaultValue": "runid"
 			}
 		},
 		"annotations": []
