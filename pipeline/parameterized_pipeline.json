@@ -31,6 +31,13 @@
 									"value": "@utcNow()",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "pipeline_name",
+								"value": {
+									"value": "@pipeline().parameters.pipeline_name",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -118,6 +125,26 @@
 									"name": "runid",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"name": "loaddate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "loaddate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pipeline_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pipeline_name",
+									"type": "String"
+								}
 							}
 						]
 					}
@@ -130,7 +157,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSynapseAnalyticsTable3",
+						"referenceName": "AzureSynapseAnalyticsTable4",
 						"type": "DatasetReference"
 					}
 				]
