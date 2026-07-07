@@ -39,7 +39,7 @@
 					},
 					"enableStaging": false,
 					"translator": {
-						"value": "@pipeline().parameters.runid",
+						"value": "@pipeline().RunId",
 						"type": "Expression"
 					}
 				},
@@ -61,6 +61,10 @@
 			"runid": {
 				"type": "string",
 				"defaultValue": "@pipeline().RunId"
+			},
+			"param": {
+				"type": "Object",
+				"defaultValue": "runid"
 			}
 		},
 		"annotations": []
