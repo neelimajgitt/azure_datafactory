@@ -20,7 +20,7 @@
 						"type": "DataFlowReference",
 						"parameters": {
 							"parameter1": {
-								"value": "'@{pipeline().parameters.p_runid}'",
+								"value": "'@{pipeline().RunID}'",
 								"type": "Expression"
 							}
 						}
