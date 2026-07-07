@@ -165,8 +165,7 @@
 		],
 		"parameters": {
 			"pipeline_name": {
-				"type": "string",
-				"defaultValue": "@pipeline().Pipeline"
+				"type": "string"
 			}
 		},
 		"variables": {
