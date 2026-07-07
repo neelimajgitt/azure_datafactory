@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pipeline_dataconversion",
 	"properties": {
 		"activities": [
 			{
@@ -17,7 +17,20 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow1",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"parameters": {
+							"parameter1": {
+								"value": "'@{pipeline().parameters.p_runid}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adf"
 					},
 					"compute": {
 						"coreCount": 8,
