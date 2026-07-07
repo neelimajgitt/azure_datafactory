@@ -91,6 +91,16 @@
 									"name": "created_at",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"name": "runid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "runid",
+									"type": "String"
+								}
 							}
 						]
 					}
