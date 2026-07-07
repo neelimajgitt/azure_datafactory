@@ -24,6 +24,13 @@
 									"value": "@variables('runid')",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "loaddate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -129,6 +136,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"pipeline_name": {
+				"type": "string",
+				"defaultValue": "@pipeline().Pipeline"
+			}
+		},
 		"variables": {
 			"runid": {
 				"type": "String",
