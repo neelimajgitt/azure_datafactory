@@ -28,7 +28,7 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     parameter1 as string (runid)",
+				"     parameter1 as string ('')",
 				"}",
 				"source(output(",
 				"          product_id as string,",
