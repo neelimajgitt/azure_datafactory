@@ -39,7 +39,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "src_multiple_files",
+						"referenceName": "metadata",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
