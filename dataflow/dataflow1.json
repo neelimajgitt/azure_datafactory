@@ -28,7 +28,8 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     parameter1 as string ('')",
+				"     parameter1 as string (''),",
+				"     pipeline as string ('')",
 				"}",
 				"source(output(",
 				"          product_id as string,",
