@@ -22,6 +22,10 @@
 							"parameter1": {
 								"value": "'@{pipeline().RunID}'",
 								"type": "Expression"
+							},
+							"pipeline": {
+								"value": "'@{pipeline().Pipeline}'",
+								"type": "Expression"
 							}
 						}
 					},
